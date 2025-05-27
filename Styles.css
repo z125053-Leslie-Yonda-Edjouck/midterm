@@ -1,0 +1,143 @@
+/* styles.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Navigation */
+nav {
+    background-color: #333;
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #4CAF50;
+}
+
+/* Sections */
+section {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+h1, h2 {
+    margin-bottom: 1rem;
+}
+
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 1rem auto;
+}
+
+/* Portfolio et Vitrine */
+.portfolio-grid, .showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+/* Ajout pour la section Mes citations */
+#quotes {
+    padding: 4rem 2rem;
+    text-align: center;
+    background-color: #f9f9f9; /* Fond légèrement gris pour différencier la section */
+}
+
+.quotes-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+blockquote {
+    font-style: italic;
+    color: #555;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border-left: 4px solid #4CAF50; /* Une bordure verte à gauche pour un style élégant */
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+blockquote p {
+    margin: 0;
+}
+
+/* Responsive Design pour la section citations */
+@media (max-width: 768px) {
+    #quotes {
+        padding: 2rem 1rem;
+    }
+
+    blockquote {
+        padding: 0.5rem;
+        margin: 1rem 0;
+    }
+}
+
+.project, .assignment {
+    background-color: #f4f4f4;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.project img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav ul li {
+        margin: 0.5rem 0;
+    }
+
+    section {
+        padding: 2rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .profile-img {
+        width: 100px;
+        height: 100px;
+    }
+}
