@@ -1,22 +1,13 @@
-/ script.js
-
-// Navigation fluide
+// script.js
 document.querySelectorAll('nav a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const targetId = this.getAttribute('href').substring(1);
         const targetSection = document.getElementById(targetId);
+        const navHeight = document.querySelector('nav').offsetHeight; // Calcule la hauteur de la nav dynamiquement
         window.scrollTo({
-            top: targetSection.offsetTop - 60, // Ajustement pour la navbar fixe
+            top: targetSection.offsetTop - navHeight, // Ajuste le défilement en fonction de la hauteur de la nav
             behavior: 'smooth'
         });
-    });
-});
-
-// Exemple : Afficher une alerte pour le formulaire de contact 
-document.addEventListener('DOMContentLoaded', () => {
-    const contactSection = document.getElementById('contact');
-    contactSection.addEventListener('click', () => {
-        alert('Merci de visiter mon portfolio ! Envoyez-moi un email pour me contacter.');
     });
 });
