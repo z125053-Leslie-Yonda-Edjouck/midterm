@@ -46,15 +46,22 @@ section {
     text-align: center;
 }
 
+/* Ajout pour éviter que la nav cache le contenu */
+#home {
+    margin-top: 60px; /* Marge pour compenser la hauteur de la nav sur desktop */
+}
+
 h1, h2 {
     margin-bottom: 1rem;
 }
 
 .profile-img {
-    width: 150px;
-    height: 150px;
+    width: 700px; /* Nouvelle taille plus grande */
+    height: 700px; /* Nouvelle taille plus grande */
     border-radius: 50%;
+    object-fit: cover;
     margin: 1rem auto;
+    display: block;
 }
 
 /* Portfolio et Vitrine */
@@ -63,44 +70,6 @@ h1, h2 {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     margin-top: 2rem;
-}
-
-/* Ajout pour la section Mes citations */
-#quotes {
-    padding: 4rem 2rem;
-    text-align: center;
-    background-color: #f9f9f9; /* Fond légèrement gris pour différencier la section */
-}
-
-.quotes-list {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-blockquote {
-    font-style: italic;
-    color: #555;
-    margin: 1.5rem 0;
-    padding: 1rem;
-    border-left: 4px solid #4CAF50; /* Une bordure verte à gauche pour un style élégant */
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-blockquote p {
-    margin: 0;
-}
-
-/* Responsive Design pour la section citations */
-@media (max-width: 768px) {
-    #quotes {
-        padding: 2rem 1rem;
-    }
-
-    blockquote {
-        padding: 0.5rem;
-        margin: 1rem 0;
-    }
 }
 
 .project, .assignment {
@@ -113,6 +82,33 @@ blockquote p {
     width: 100%;
     height: auto;
     border-radius: 5px;
+    max-width: 300px;
+}
+
+/* Section Mes citations */
+#quotes {
+    padding: 4rem 2rem;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.quotes-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+blockquote {
+    font-style: italic;
+    color: #555;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border-left: 4px solid #4CAF50;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+blockquote p {
+    margin: 0;
 }
 
 /* Responsive Design */
@@ -126,8 +122,30 @@ blockquote p {
         margin: 0.5rem 0;
     }
 
+    nav {
+        padding: 0.3rem; /* Réduit le padding sur mobile */
+    }
+
+    #home {
+        margin-top: 120px; /* Marge pour compenser la hauteur de la nav en mode colonne */
+    }
+
     section {
         padding: 2rem 1rem;
+    }
+
+    .profile-img {
+        width: 500px;
+        height: 500px;
+    }
+
+    #quotes {
+        padding: 2rem 1rem;
+    }
+
+    blockquote {
+        padding: 0.5rem;
+        margin: 1rem 0;
     }
 }
 
@@ -136,8 +154,12 @@ blockquote p {
         font-size: 1.5rem;
     }
 
+    #home {
+        margin-top: 120px; /* Marge pour mobile */
+    }
+
     .profile-img {
-        width: 100px;
-        height: 100px;
+        width: 350px;
+        height: 350px;
     }
 }
