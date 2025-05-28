@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quotes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#portfolio">Portfolio</a></li>
+            <li><a href="index.html#showcase">Showcase</a></li>
+            <li><a href="index.html#quotes">Quotes</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="quotes">
+        <h2>Random Quotes</h2>
+        <div class="quotes-list">
+            <blockquote id="random-quote" class="quote-item">
+                <p id="quote-text">Loading quote...</p>
+                <p id="quote-author" style="font-size: 0.9rem; color: #777; margin-top: 0.5rem;"></p>
+            </blockquote>
+            <button id="new-quote-btn" class="submit-btn">Show Another Quote</button>
+        </div>
+    </section>
+
+    <footer></footer>
+
+    <script>
+        // Fetch quotes from JSON file
+        async function loadQuotes() {
+            try {
+                const response = await fetch('quotes.json');
+                if (!response.ok) {
+                    throw new Error('Failed to load quotes');
+                }
+                const quotes = await response.json();
+                return quotes;
+            } catch (error) {
+                console.error('Error loading quotes:', error);
+                return [];
+            }
+        }
+
+        // Display a random quote
+        function displayRandomQuote(quotes) {
+            if (quotes.length === 0) {
+                document.getElementById('quote-text').textContent = 'No quotes available.';
+                document.getElementById('quote-author').textContent = '';
+                return;
+            }
+
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            const quote = quotes[randomIndex];
+            document.getElementById('quote-text').textContent = `"${quote.text}"`;
+            document.getElementById('quote-author').textContent = `– ${quote.author}`;
+        }
+
+        // Load quotes and display one on page load
+        document.addEventListener('DOMContentLoaded', async () => {
+            const quotes = await loadQuotes();
+            displayRandomQuote(quotes);
+
+            // Add event listener to the button to show a new random quote
+            document.getElementById('new-quote-btn').addEventListener('click', () => {
+                displayRandomQuote(quotes);
+            });
+
+            // Apply IntersectionObserver for animations (similar to index.html)
+            const sections = document.querySelectorAll('section');
+            const options = {
+                threshold: 0.1 // Trigger the animation when 10% of the section is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const elementsToAnimate = entry.target.querySelectorAll('h2, .quote-item, .submit-btn');
+                        if (elementsToAnimate.length > 0) {
+                            elementsToAnimate.forEach((item, index) => {
+                                setTimeout(() => {
+                                    item.classList.add('visible');
+                                }, 100 + index * 200); // Initial delay of 100ms, then 200ms between each element
+                            });
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, options);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
