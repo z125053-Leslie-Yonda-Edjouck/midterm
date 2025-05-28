@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Motorized Robot Project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional styles specific to moteur.html */
+        .project-details {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .project-details p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: #34495e;
+            letter-spacing: 0.8px;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .project-details p.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-details p:nth-child(1) { transition-delay: 0.2s; }
+        .project-details p:nth-child(2) { transition-delay: 0.4s; }
+        .project-details p:nth-child(3) { transition-delay: 0.6s; }
+
+        .image-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .project-image {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+            cursor: pointer;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.8s ease, transform 0.8s ease, box-shadow 0.3s ease;
+        }
+
+        .project-image.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .project-image:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
+        }
+
+        .project-image:nth-child(1) { transition-delay: 0.8s; }
+        .project-image:nth-child(2) { transition-delay: 1.0s; }
+        .project-image:nth-child(3) { transition-delay: 1.2s; }
+        .project-image:nth-child(4) { transition-delay: 1.4s; }
+
+        /* Modal styles for enlarged images */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#portfolio">Portfolio</a></li>
+            <li><a href="index.html#showcase">Showcase</a></li>
+            <li><a href="index.html#quotes">Quotes</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="project-details">
+        <h2>Mobile Motorized Robot Project</h2>
+        <div class="project-details">
+            <p>
+                The objective of this project was to assemble a mobile robot equipped with two motors. We used the L293D as the motor driver IC, which is capable of driving two DC motors.
+            </p>
+            <p>
+                It can continuously supply a current of 600 mA with a voltage of 5V, while the motors themselves operate with a voltage range from 4.5V to 36V.
+            </p>
+            <p>
+                The robot is designed to detect and capture elements from its surrounding environment and transmit that data to us. Using a custom-written program, the robot is able to interpret this information and move accordingly.
+            </p>
+            <div class="image-gallery">
+                <img src="Mobile Motorized Robot Project/image1.jpg" alt="Robot Assembly with Motors" class="project-image">
+                <img src="Mobile Motorized Robot Project/image2.jpg" alt="L293D Motor Driver Setup" class="project-image">
+                <img src="Mobile Motorized Robot Project/image3.jpg" alt="Robot Detecting Environment" class="project-image">
+                <img src="Mobile Motorized Robot Project/image4.jpg" alt="Robot in Motion" class="project-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for enlarged images -->
+    <div id="image-modal" class="modal">
+        <span class="modal-close">×</span>
+        <img id="modal-image" src="" alt="Enlarged Image">
+    </div>
+
+    <footer></footer>
+
+    <script>
+        // Apply IntersectionObserver for dynamic animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            const options = {
+                threshold: 0.1 // Trigger the animation when 10% of the section is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const elementsToAnimate = entry.target.querySelectorAll('h2, p, .project-image');
+                        if (elementsToAnimate.length > 0) {
+                            elementsToAnimate.forEach((item, index) => {
+                                setTimeout(() => {
+                                    item.classList.add('visible');
+                                }, 100 + index * 200); // Initial delay of 100ms, then 200ms between each element
+                            });
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, options);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Modal functionality for enlarging images
+            const modal = document.getElementById('image-modal');
+            const modalImage = document.getElementById('modal-image');
+            const closeModal = document.querySelector('.modal-close');
+            const images = document.querySelectorAll('.project-image');
+
+            images.forEach(image => {
+                image.addEventListener('click', () => {
+                    modal.style.display = 'flex';
+                    modalImage.src = image.src;
+                    modalImage.alt = image.alt;
+                });
+            });
+
+            closeModal.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
