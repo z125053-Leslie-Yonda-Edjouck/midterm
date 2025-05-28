@@ -1,33 +1,33 @@
 <!DOCTYPE html>
-<html lang="eng">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Portfolio</title>
+    <title>My Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <nav>
         <ul>
-            <li><a href="#home">Accueil</a></li>
-            <li><a href="#about">À propos</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#showcase">Vitrine</a></li>
-            <li><a href="#quotes">Citations</a></li>
+            <li><a href="#showcase">Showcase</a></li>
+            <li><a href="#quotes">Quotes</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
     <section id="home">
         <div class="home-content">
-            <h1>Bienvenue sur mon portfolio</h1>
+            <h1>Welcome to my portfolio</h1>
             <p class="bio-text">Hi, I'm Yonda Edjouck Leslie — a third-year Electronic and Computer Engineering student at the University of Ferrara in Italy.</p>
         </div>
     </section>
 
     <section id="about">
-        <h2>À propos de moi</h2>
+        <h2>About Me</h2>
         <div class="about-content">
             <p class="about-text">
                 I am originally from Cameroon, where I completed both my primary and secondary education. I am fluent in three languages: French, English, and Italian.
@@ -45,124 +45,78 @@
     </section>
 
     <section id="portfolio">
-        <h2>Mes travaux précédents</h2>
+        <h2>My Previous Work</h2>
         <div class="project-container">
             <div class="project-item">
-                <img src="Images/projet1.jpg" alt="Projet 1">
-                <h3>Projet 1</h3>
-                <p>Description du projet 1.</p>
+                <img src="Images/projet1.jpg" alt="Project 1">
+                <h3>Project 1</h3>
+                <p>Description of project 1.</p>
             </div>
             <div class="project-item">
-                <img src="Images/projet2.jpg" alt="Projet 2">
-                <h3>Projet 2</h3>
-                <p>Description du projet 2.</p>
+                <img src="Images/projet2.jpg" alt="Project 2">
+                <h3>Project 2</h3>
+                <p>Description of project 2.</p>
             </div>
             <div class="project-item">
-                <img src="Images/projet3.jpg" alt="Projet 3">
-                <h3>Projet 3</h3>
-                <p>Description du projet 3.</p>
+                <img src="Images/projet3.jpg" alt="Project 3">
+                <h3>Project 3</h3>
+                <p>Description of project 3.</p>
             </div>
         </div>
     </section>
 
     <section id="showcase">
-        <h2>Vitrine de travaux scolaires</h2>
+        <h2>Showcase of Academic Work</h2>
         <div class="project-container">
             <div class="project-item">
-                <img src="Images/devoir1.jpg" alt="Travail 1">
-                <h3>Travail 1</h3>
-                <p>Description du travail scolaire 1.</p>
+                <img src="Images/devoir1.jpg" alt="Assignment 1">
+                <h3>Assignment 1</h3>
+                <p>Description of academic assignment 1.</p>
             </div>
             <div class="project-item">
-                <img src="Images/devoir2.jpg" alt="Travail 2">
-                <h3>Travail 2</h3>
-                <p>Description du travail scolaire 2.</p>
+                <img src="Images/devoir2.jpg" alt="Assignment 2">
+                <h3>Assignment 2</h3>
+                <p>Description of academic assignment 2.</p>
             </div>
             <div class="project-item">
-                <img src="Images/devoir3.jpg" alt="Travail 3">
-                <h3>Travail 3</h3>
-                <p>Description du travail scolaire 3.</p>
+                <img src="Images/devoir3.jpg" alt="Assignment 3">
+                <h3>Assignment 3</h3>
+                <p>Description of academic assignment 3.</p>
             </div>
         </div>
     </section>
 
     <section id="quotes">
-        <h2>Ascending (Mes citations)</h2>
+        <h2>Ascending (My Quotes)</h2>
         <div class="quotes-list">
-            <blockquote class="quote-item"><p>"Citation 1"</p></blockquote>
-            <blockquote class="quote-item"><p>"Citation 2"</p></blockquote>
+            <blockquote class="quote-item"><p>"Quote 1"</p></blockquote>
+            <blockquote class="quote-item"><p>"Quote 2"</p></blockquote>
             <blockquote class="more-quotes">
-                <p><a href="citation.html">Lire d'autres citations de façon aléatoire</a></p>
+                <p><a href="citation.html">Read more quotes randomly</a></p>
             </blockquote>
         </div>
     </section>
 
     <section id="contact">
-        <h2>Contactez-moi</h2>
+        <h2>Contact Me</h2>
         <form class="contact-form" id="contact-form">
             <div class="form-item">
-                <label for="name">Nom</label>
-                <input type="text" id="name" name="name" placeholder="Votre nom" required>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Your name" required>
             </div>
             <div class="form-item">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Votre email" required>
+                <input type="email" id="email" name="email" placeholder="Your email" required>
             </div>
             <div class="form-item">
                 <label for="message">Message</label>
-                <textarea id="message" name="message" placeholder="Votre message" required></textarea>
+                <textarea id="message" name="message" placeholder="Your message" required></textarea>
             </div>
-            <button type="submit" class="submit-btn">Envoyer</button>
+            <button type="submit" class="submit-btn">Send</button>
         </form>
     </section>
 
     <footer></footer>
 
-    <!-- Ajout d'EmailJS et gestion du formulaire -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>
-        // Initialiser EmailJS avec ton User ID
-        (function(){
-            emailjs.init("J_Q9jfZXIh16pkEQR"); // Ton User ID (Public Key)
-        })();
-
-        // Gérer la soumission du formulaire
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Empêche le rechargement de la page
-
-            // Récupérer les données du formulaire
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const message = document.getElementById('message').value.trim();
-
-            // Valider les champs
-            if (!name || !email || !message) {
-                alert('Erreur : Veuillez remplir tous les champs.');
-                return;
-            }
-
-            // Valider l'e-mail avec une expression régulière simple
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailPattern.test(email)) {
-                alert('Erreur : Veuillez entrer une adresse e-mail valide.');
-                return;
-            }
-
-            // Envoyer l'e-mail via EmailJS
-            emailjs.send("service_m1bp2hn", "template_2tpudfv", {
-                name: name,
-                email: email,
-                message: message
-            }).then(function(response) {
-                alert('Merci ! Votre message a été envoyé avec succès.');
-                document.getElementById('contact-form').reset(); // Réinitialiser le formulaire
-            }, function(error) {
-                alert('Erreur : Échec de l\'envoi du message. Veuillez réessayer plus tard.');
-                console.error('Erreur EmailJS:', error);
-            });
-        });
-    </script>
-
-    <script src="script.js"></script>
-</body>
-</html>
+    <!-- Adding EmailJS and handling the form -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist
