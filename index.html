@@ -123,49 +123,49 @@ The application was required to display one multiple-choice question at a time, 
     <footer></footer>
 
     <!-- Ajout d'EmailJS et gestion du formulaire -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>
-        // Initialiser EmailJS avec ton User ID
-        (function(){
-            emailjs.init("J_Q9jfZXIh16pkEQR"); // Ton User ID (Public Key)
-        })();
+     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+    // Initialize EmailJS with your User ID
+    (function(){
+        emailjs.init("J_Q9jfZXIh16pkEQR"); // Your User ID (Public Key)
+    })();
 
-        // Gérer la soumission du formulaire
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Empêche le rechargement de la page
+    // Handle form submission
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent page reload
 
-            // Récupérer les données du formulaire
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const message = document.getElementById('message').value.trim();
+        // Retrieve form data
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
 
-            // Valider les champs
-            if (!name || !email || !message) {
-                alert('Erreur : Veuillez remplir tous les champs.');
-                return;
-            }
+        // Validate fields
+        if (!name || !email || !message) {
+            alert('Error: Please fill in all fields.');
+            return;
+        }
 
-            // Valider l'e-mail avec une expression régulière simple
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailPattern.test(email)) {
-                alert('Erreur : Veuillez entrer une adresse e-mail valide.');
-                return;
-            }
+        // Validate email with a simple regex
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            alert('Error: Please enter a valid email address.');
+            return;
+        }
 
-            // Envoyer l'e-mail via EmailJS
-            emailjs.send("service_m1bp2hn", "template_2tpudfv", {
-                name: name,
-                email: email,
-                message: message
-            }).then(function(response) {
-                alert('Merci ! Votre message a été envoyé avec succès.');
-                document.getElementById('contact-form').reset(); // Réinitialiser le formulaire
-            }, function(error) {
-                alert('Erreur : Échec de l\'envoi du message. Veuillez réessayer plus tard.');
-                console.error('Erreur EmailJS:', error);
-            });
+        // Send email via EmailJS
+        emailjs.send("service_m1bp2hn", "template_2tpudfv", {
+            name: name,
+            email: email,
+            message: message
+        }).then(function(response) {
+            alert('Thank you! Your message has been sent successfully.');
+            document.getElementById('contact-form').reset(); // Reset the form
+        }, function(error) {
+            alert('Error: Failed to send the message. Please try again later.');
+            console.error('EmailJS Error:', error);
         });
-    </script>
+    });
+</script>
 
     <script src="script.js"></script>
 </body>
