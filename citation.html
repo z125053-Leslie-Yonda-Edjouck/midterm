@@ -24,7 +24,6 @@
         <div class="quotes-list">
             <blockquote id="random-quote" class="quote-item">
                 <p id="quote-text">Loading quote...</p>
-                <p id="quote-author" style="font-size: 0.9rem; color: #777; margin-top: 0.5rem;"></p>
             </blockquote>
             <button id="new-quote-btn" class="submit-btn">Show Another Quote</button>
         </div>
@@ -52,14 +51,12 @@
         function displayRandomQuote(quotes) {
             if (quotes.length === 0) {
                 document.getElementById('quote-text').textContent = 'No quotes available.';
-                document.getElementById('quote-author').textContent = '';
                 return;
             }
 
             const randomIndex = Math.floor(Math.random() * quotes.length);
             const quote = quotes[randomIndex];
-            document.getElementById('quote-text').textContent = `"${quote.text}"`;
-            document.getElementById('quote-author').textContent = `– ${quote.author}`;
+            document.getElementById('quote-text').textContent = `"${quote.q}"`;
         }
 
         // Load quotes and display one on page load
