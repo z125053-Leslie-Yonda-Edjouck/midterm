@@ -104,24 +104,9 @@ function showResult() {
     quizBox.innerHTML = `
         <h2>Your score: ${score} / ${questions.length}</h2>
         <p>${percentage.toFixed(1)}% - ${message}</p>
-        <button id="restartBtn">Restart Quiz</button>
     `;
-    document.getElementById("restartBtn").addEventListener("click", () => {
-        currentQuestionIndex = 0;
-        score = 0;
-        quizBox.innerHTML = `
-            <div id="question-count">Question 1 of 30</div>
-            <div id="question">Question will appear here</div>
-            <div id="options"></div>
-            <button id="nextBtn" disabled>Next</button>
-            <div id="result"></div>
-        `;
-        nextBtn.disabled = true;
-        showQuestion();
-    });
     setTimeout(() => {
         quizBox.querySelector("h2").classList.add("visible");
         quizBox.querySelector("p").classList.add("visible");
-        quizBox.querySelector("#restartBtn").classList.add("visible");
     }, 100);
 }
