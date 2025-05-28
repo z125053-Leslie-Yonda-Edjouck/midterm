@@ -10,12 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 // Target all elements to animate within this section
                 const elementsToAnimate = entry.target.querySelectorAll('h2, .bio-text, .about-text, .project-item, .quote-item, .more-quotes, .form-item, .submit-btn');
-                elementsToAnimate.forEach((item, index) => {
-                    // Add the 'visible' class with a slight delay for a progressive effect
-                    setTimeout(() => {
-                        item.classList.add('visible');
-                    }, index * 200); // Delay of 200ms between each element
-                });
+                if (elementsToAnimate.length > 0) {
+                    elementsToAnimate.forEach((item, index) => {
+                        // Add the 'visible' class with a slight delay for a progressive effect
+                        setTimeout(() => {
+                            item.classList.add('visible');
+                        }, 100 + index * 200); // Initial delay of 100ms, then 200ms between each element
+                    });
+                }
                 observer.unobserve(entry.target); // Stop observing this section once animated
             }
         });
