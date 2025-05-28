@@ -1,70 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Quiz App</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 2rem;
-      background: #f4f4f4;
-      color: #333;
-      max-width: 600px;
-      margin: auto;
-    }
-    h1 {
-      text-align: center;
-    }
-    .quiz-box {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    #question-count {
-      font-size: 0.9rem;
-      color: #777;
-      margin-bottom: 1rem;
-      text-align: right;
-    }
-    #question {
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-    }
-    .option {
-      display: block;
-      margin: 0.5rem 0;
-    }
-    button {
-      margin-top: 1rem;
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-    }
-    #result {
-      margin-top: 2rem;
-      font-weight: bold;
-      text-align: center;
-    }
-    #timer {
-    font-size: 0.9rem;
-    color: #777;
-    margin-bottom: 1rem;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Specific styles for quiz.html */
+        body {
+            background: linear-gradient(135deg, #f4f4f4, #e0e0e0);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        .quiz-container {
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #FFD700;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        h1.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #34495e;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            transition-delay: 0.2s;
+        }
+
+        h2.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .quiz-box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            transition-delay: 0.4s;
+        }
+
+        .quiz-box.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #question-count {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 1rem;
+            text-align: right;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        #question-count.visible {
+            opacity: 1;
+        }
+
+        #timer {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            color: #e74c3c;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        #timer.visible {
+            opacity: 1;
+        }
+
+        #question {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #34495e;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        #question.visible {
+            opacity: 1;
+        }
+
+        #options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .option {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            color: #34495e;
+            background: #f9f9f9;
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .option.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .option:nth-child(1) { transition-delay: 0.2s; }
+        .option:nth-child(2) { transition-delay: 0.3s; }
+        .option:nth-child(3) { transition-delay: 0.4s; }
+        .option:nth-child(4) { transition-delay: 0.5s; }
+
+        .option:hover {
+            background: #e0e0e0;
+            transform: scale(1.02);
+        }
+
+        .option:disabled {
+            cursor: not-allowed;
+        }
+
+        #nextBtn {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            color: white;
+            background: #FFD700;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+            margin-top: 1rem;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        #nextBtn.visible {
+            opacity: 1;
+        }
+
+        #nextBtn:hover {
+            background: #DAA520;
+            transform: scale(1.05);
+        }
+
+        #nextBtn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        #result {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #34495e;
+            margin-top: 2rem;
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        #result.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="../index.html#home">Home</a></li>
+            <li><a href="../index.html#about">About</a></li>
+            <li><a href="../index.html#portfolio">Portfolio</a></li>
+            <li><a href="../index.html#showcase">Showcase</a></li>
+            <li><a href="../index.html#quotes">Quotes</a></li>
+            <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-  <h1>JavaScript Quiz</h1>
-  <h2>Created by YONDA EDJOUCK LESLIE  Z125053</h2>
-  <div class="quiz-box">
-    <div id="question-count">Question 1 of 30</div>
-    <div id="question">Question will appear here</div>
-    <div id="options"></div>
-    <button id="nextBtn">Next</button>
-    <div id="result"></div>
-  </div>
+    <div class="quiz-container">
+        <h1>JavaScript Quiz</h1>
+        <h2>Created by Yonda Edjouck Leslie (Z125053)</h2>
+        <div class="quiz-box">
+            <div id="question-count">Question 1 of 30</div>
+            <div id="question">Question will appear here</div>
+            <div id="options"></div>
+            <button id="nextBtn" disabled>Next</button>
+            <div id="result"></div>
+        </div>
+    </div>
 
-  <script src="script.js"></script>
+    <footer></footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Apply IntersectionObserver for dynamic animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('h1, h2, .quiz-box, #question-count, #question, .option, #nextBtn, #timer, #result');
+            const options = {
+                threshold: 0.1 // Trigger the animation when 10% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, options);
+
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
 </body>
 </html>
