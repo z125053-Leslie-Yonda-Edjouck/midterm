@@ -118,5 +118,51 @@
 
     <footer></footer>
 
-    <!-- Adding EmailJS and handling the form -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist
+    <!-- Ajout d'EmailJS et gestion du formulaire -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // Initialiser EmailJS avec ton User ID
+        (function(){
+            emailjs.init("J_Q9jfZXIh16pkEQR"); // Ton User ID (Public Key)
+        })();
+
+        // Gérer la soumission du formulaire
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Empêche le rechargement de la page
+
+            // Récupérer les données du formulaire
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            // Valider les champs
+            if (!name || !email || !message) {
+                alert('Erreur : Veuillez remplir tous les champs.');
+                return;
+            }
+
+            // Valider l'e-mail avec une expression régulière simple
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert('Erreur : Veuillez entrer une adresse e-mail valide.');
+                return;
+            }
+
+            // Envoyer l'e-mail via EmailJS
+            emailjs.send("service_m1bp2hn", "template_2tpudfv", {
+                name: name,
+                email: email,
+                message: message
+            }).then(function(response) {
+                alert('Merci ! Votre message a été envoyé avec succès.');
+                document.getElementById('contact-form').reset(); // Réinitialiser le formulaire
+            }, function(error) {
+                alert('Erreur : Échec de l\'envoi du message. Veuillez réessayer plus tard.');
+                console.error('Erreur EmailJS:', error);
+            });
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>
